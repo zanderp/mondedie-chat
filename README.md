@@ -26,7 +26,6 @@ Node.js chat application using Express, Socket.io, Redis and Mithril.
 
 ## Screenshot
 
-![screenshot](http://i.imgur.com/SvOP3ix.png "screenshot")
 ![screenshot responsive](http://i.imgur.com/yjd28Ud.png "screenshot responsive")
 
 ## Heroku deployment
