@@ -1,8 +1,7 @@
-# Mondedie-chat
+# Node Chat
 
 Node.js chat application using Express, Socket.io, Redis and Mithril.
 
-[![dependency](https://img.shields.io/david/mondediefr/mondedie-chat.svg?label=Dependencies)](https://github.com/mondediefr/mondedie-chat/blob/master/package.json#L8)
 
 ## Features
 
@@ -117,7 +116,7 @@ vagrant halt # stop vagrant
 vagrant up --provision # restart vagrant
 ```
 
-Open app : `http://mondedie-chat.dev`
+Open app : `http://node-chat.dev`
 
 ---
 
@@ -131,8 +130,8 @@ Open app : `http://mondedie-chat.dev`
 
 Clone the project and install dependencies :
 ```
-git clone https://github.com/mondediefr/mondedie-chat.git
-cd mondedie-chat
+git clone http://repo-url.git
+cd node-chat
 
 npm install -g bower gulp pm2
 npm install
@@ -152,7 +151,7 @@ AUTH_API_ENDPOINT=http://domain.tld/api/auth
 Start application :
 
 ```
-pm2 start --node-args="--harmony" --name mondedie-chat app.js
+pm2 start --node-args="--harmony" --name node-chat app.js
 ```
 
 Open app : http://127.0.0.1:5000/
@@ -170,8 +169,8 @@ Open app : http://127.0.0.1:5000/
 
 Clone the project and install dependencies :
 ```
-git clone https://github.com/mondediefr/mondedie-chat.git
-cd mondedie-chat
+git clone http://repo-url.git
+cd node-chat
 
 npm install -g bower gulp nodemon
 npm install
@@ -205,58 +204,6 @@ Open app : http://127.0.0.1:5000/
 
 ---
 
-## Docker installation
-
-### Build image
-```
-docker pull mondedie/mondedie-chat
-```
-
-### Image usage
-
-#### Environment variables
-
-* ENV=production
-* AUTH_API_ENDPOINT=http://your-domain.tld/api/auth.php
-* COOKIES_SECRET=PLEASE_REPLACE_BY_RANDOM_VALUE
-* SESSION_SECRET=PLEASE_REPLACE_BY_RANDOM_VALUE
-* REDIS_URL=redis://redis:6379
-
-#### Setup
-
-We have created a [docker-compose.yml](https://github.com/mondediefr/mondedie-chat/blob/master/docker-compose.yml) including 3 containers :
-
-* chat
-* redis
-* nginx : reverse-proxy mode
-
-Create a new Nginx vhost with this content :
-
-```nginx
-# /mnt/docker/nginx/sites-enabled/chat.conf
-
-server {
-
-  listen 80;
-  server_name chat.domain.tld;
-
-  location / {
-    proxy_pass http://chat:5000;
-    # For websockets handshake to establish the upgraded connection
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection "upgrade";
-  }
-
-}
-```
-
-Run !
-
-```
-docker-compose up -d
-```
-
 ## Roadmap
 
 - Ignore a user
@@ -265,23 +212,6 @@ docker-compose up -d
 - Build an API
 - Increase chatbot IQ
 
-## Contribute
-
-- Fork this repository
-- Create a new feature branch for a new functionality or bugfix
-- Commit your changes
-- Push your code and open a new pull request
-- Use [issues](https://github.com/mondediefr/mondedie-chat/issues) for any questions
-
-## Support
-
-https://github.com/mondediefr/mondedie-chat/issues
-
 ## License
 
 Apache License Version 2.0
-
-## Contact
-
-- [contact@mondedie.fr](mailto:contact@mondedie.fr)
-- [https://twitter.com/mondediefr](https://twitter.com/mondediefr)
